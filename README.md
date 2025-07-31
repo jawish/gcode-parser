@@ -13,11 +13,11 @@ This parser is designed for applications that require fast and memory-efficient 
 - **Highly Configurable**: Easily tune the parser's behavior to support various G-code dialects, including custom command letters, checksum validation, and more
 - **Modern Zig**: Built with idiomatic Zig, leveraging the power of comptime for flexibility and performance
 
-## Requirements
-
-- Zig version 0.14.0 or later
-
 ## Installation
+
+### Prerequisites
+
+- [Zig](https://ziglang.org/) 0.14.0 or later
 
 ### Using `zig fetch`
 
@@ -97,9 +97,11 @@ For a complete guide to the parser's API, please refer to the [full API Document
 
 ## Contributing
 
-Contributions are welcome!
+Contributions are welcome! Please ensure:
 
-Whether it's bug reports, feature requests, or pull requests, please feel free to open an issue or PR.
+- Code follows Zig style guidelines
+- Tests are added for new features
+- Documentation is updated for API changes
 
 ## License
 

@@ -1,3 +1,15 @@
+//! G-code parser library.
+//!
+//! This library provides a high-performance, memory-safe G-code parser designed
+//! for safety, performance, and developer experience. It supports streaming
+//! parsing, custom dialects, and comprehensive error handling.
+//!
+//! ## Key Features
+//! - Streaming parser for memory-efficient processing of large files
+//! - Configurable address letter sets for different G-code dialects
+//! - Comprehensive error handling with detailed error contexts
+//! - Resource limits to prevent denial-of-service attacks
+
 const std = @import("std");
 const mem = std.mem;
 const ascii = std.ascii;
@@ -31,9 +43,9 @@ const DEFAULT_MAX_BLOCKS_COUNT = 10_000_000;
 const DEFAULT_MAX_INPUT_SIZE_BYTES = 100 * 1024 * 1024; // 100MB
 
 /// Maximum line length in bytes.
-/// G-code lines are typically short, 16KiB allows for complex parametric expressions
+/// G-code lines are typically short, 256KiB allows for complex parametric expressions
 /// while preventing single-line memory exhaustion attacks.
-const DEFAULT_MAX_LINE_LENGTH_BYTES = 256 * 1024; // 16 KiB
+const DEFAULT_MAX_LINE_LENGTH_BYTES = 256 * 1024; // 256 KiB
 
 /// Maximum number of lines to process.
 /// Large CNC programs can have many lines, 5M provides generous headroom
@@ -743,4 +755,9 @@ pub fn Parser(comptime FloatType: type) type {
             return word_list.items.len > initial_word_count;
         }
     };
+}
+
+test {
+    // Include all tests from the gcode_parser module
+    @import("std").testing.refAllDecls(@This());
 }

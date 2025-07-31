@@ -1,7 +1,6 @@
 const std = @import("std");
 
 pub fn build(b: *std.Build) void {
-    const root_source_file = "src/main.zig";
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
@@ -9,7 +8,7 @@ pub fn build(b: *std.Build) void {
     const gcode_parser_mod = b.addModule(
         "gcode_parser",
         .{
-            .root_source_file = b.path(root_source_file),
+            .root_source_file = b.path("src/root.zig"),
             .target = target,
             .optimize = optimize,
         },
@@ -103,7 +102,7 @@ pub fn build(b: *std.Build) void {
     // Build and run benchmarks
     const benchmarks = b.addExecutable(.{
         .name = "bench",
-        .root_source_file = b.path("bench/main.zig"),
+        .root_source_file = b.path("bench/benchmark.zig"),
         .target = target,
         .optimize = .ReleaseFast, // Always optimize benchmarks
     });
